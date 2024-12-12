@@ -17,7 +17,7 @@ contract Inheritance is ReentrancyGuard {
 
     function withdraw(uint256 amount, address newHeir) external nonReentrant {
         require(address(this).balance >= amount, "Insufficient balance");
-        if (msg.sender == owner && block.timestamp <= (lastWithdrawalTime + 30 days)) {
+        if (msg.sender == owner) {
             if (amount == 0) {
                 lastWithdrawalTime = block.timestamp;
                 return;
